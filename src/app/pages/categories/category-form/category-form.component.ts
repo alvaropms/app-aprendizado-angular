@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from '../shared/category.model';
 import { CategoryService } from '../shared/category.service';
 import { switchMap } from 'rxjs/operators';
-import {ToastrModule} from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 import { HttpParams } from '@angular/common/http';
 
 @Component({
@@ -26,7 +26,8 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
     private categoryService: CategoryService,
     private route: ActivatedRoute,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private toastr: ToastrService
   ) { 
 
   }
@@ -63,9 +64,9 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
 
   private buildCategoryForm(){
     this.categoryForm = this.formBuilder.group({
-      id: [null],
-      name: [null, Validators.required, Validators.minLength(2)],
-      description: [null]
+      id: null,
+      name: [null, [Validators.required, Validators.minLength(2)]],
+      description: null
     });
   }
 
@@ -76,7 +77,8 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
       ).subscribe(
         (category) => {
           this.category = category;
-          this.categoryForm.patchValue(category)
+          console.log(category);
+          this.categoryForm.patchValue(category);
         },
         (error) => alert('Erro no servidor!')
       )
@@ -93,10 +95,45 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
   }
 
   private createCategory(){
+    const category: Category = Object.assign(new Category(), this.categoryForm.value);
+
+    this.categoryService.create(category)
+    .subscribe(
+      category =>  this.actionsForSucess(category),
+      error => this.actionsForError(error)
+    )
 
   }
 
   private updateCategory(){
+    const category: Category = Object.assign(new Category(), this.categoryForm.value);
+
+    this.categoryService.update(category)
+    .subscribe(
+      category =>  this.actionsForSucess(category),
+      error => this.actionsForError(error)
+    )
+  }
+
+  private actionsForSucess(category: Category){
+    this.toastr.success('Solicitação processada!','Sucesso!');
+
+    this.router.navigateByUrl('categories', {skipLocationChange: true}).then(
+      () => this.router.navigate(['categories', category.id, 'edit'])
+    );
+
+  }
+
+  private actionsForError(error: any){
+    this.toastr.error('Não foi possível processar a solicitação', 'Erro!');
+
+    this.submittingForm = false;
+
+    if(error.status == 422){
+      this.serverErrorMessages = JSON.parse(error._body).error;
+    }else{
+      this.serverErrorMessages = ['Falha na comunicação com o servidor']
+    }
 
   }
 }
