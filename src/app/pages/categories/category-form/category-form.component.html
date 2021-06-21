@@ -20,20 +20,34 @@
             <div class="col-md-5">
               <label for="name">Nome</label>
               <input formControlName='name' type="text" id="name" class="form-control" aria-describedby="passwordHelpInline">
-             <!-- <div class="text-danger" *ngIf="categoryForm.get('name').invalid && categoryForm.get('name').touched">
-                <div *ngIf="categoryForm.get('name').errors.required">
-                  Dado obrigatório
-                </div>
-                <div *ngIf="categoryForm.get('name').errors.minlength">
 
+
+              <div *ngIf="categoryForm.controls['name'] && (categoryForm.controls['name'].dirty || categoryForm.controls['name'].touched)"
+                  class="text-danger">
+
+                <div *ngIf="categoryForm.controls['name'].errors?.required">
+                  Nome obrigatório
                 </div>
-              </div>-->
+                <div *ngIf="categoryForm.controls['name'].errors?.minlength">
+                  O nome deve contar no mínimo 2 caracteres
+                </div>
+
+              </div>
+
+
             </div>
             <div class="col-md-7">
                 <label for="description">Descrição</label>
                 <textarea formControlName='description' rows="3" id="description" class="form-control"></textarea>
             </div>
         </div>
+
+        <div class="alert alert-danger mt-4" *ngIf="error">
+          <ul>
+            <li *ngFor="let error of serverErrorMessages">{{error}}</li>
+          </ul>
+        </div>
+
         <div class="row d-flex justify-content-end pe-2">
             <button [disabled]='submittingForm || categoryForm.invalid' type="submit" class="btn btn-primary col-md-2 col-lg-1 mt-2">Salvar</button>
         </div>

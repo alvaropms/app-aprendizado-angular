@@ -21,6 +21,7 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
   submittingForm: boolean = false;
   category: Category = new Category();
   id: number = 0;
+  error: boolean = false;
 
   constructor(
     private categoryService: CategoryService,
@@ -117,6 +118,7 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
 
   private actionsForSucess(category: Category){
     this.toastr.success('Solicitação processada!','Sucesso!');
+    this.error = false;
 
     this.router.navigateByUrl('categories', {skipLocationChange: true}).then(
       () => this.router.navigate(['categories', category.id, 'edit'])
@@ -128,6 +130,8 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
     this.toastr.error('Não foi possível processar a solicitação', 'Erro!');
 
     this.submittingForm = false;
+
+    this.error = true;
 
     if(error.status == 422){
       this.serverErrorMessages = JSON.parse(error._body).error;
