@@ -14,7 +14,7 @@ import { HttpParams } from '@angular/common/http';
 })
 export class CategoryFormComponent implements OnInit, AfterContentChecked {
 
-  currentAction: string = "teste";
+  currentAction: string = "";
   categoryForm: FormGroup = new FormGroup({});
   pageTitle: string = "";
   serverErrorMessages: string[] = [];

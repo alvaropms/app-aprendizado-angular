@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'new',
     component: EntryFormComponent
+  },
+  {
+    path: ':id/edit',
+    component: EntryFormComponent
   }
 ];
 

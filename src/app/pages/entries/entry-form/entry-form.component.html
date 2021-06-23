@@ -2,36 +2,59 @@
     <ol class="breadcrumb bg-light p-2">
       <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
       <li class="breadcrumb-item" aria-current="page"><a routerLink="/entries">Entradas</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Formulário de Entradas</li>
+      <li class="breadcrumb-item active" aria-current="page">{{pageTitle}}</li>
     </ol>
 </nav>
 <div class="row mb-3 mt-4">
     <div class="col-6 h2">
-      Formulário de Entradas
+      {{pageTitle}}
     </div>
     <div class="col-6 d-flex justify-content-end max-height">
-      <a routerLink="/categories" class="btn btn-success spacement">Voltar</a>
+      <a routerLink="/entries" class="btn btn-success spacement">Voltar</a>
     </div>
 </div>
 <div class="card">
     <div class="card-body d-flex flex-wrap bg-light">
-      <form  class="width-100">
-        <div class="row ">
-            <div class="col-md-5">
+      <form [formGroup]='entryForm' class="width-100">
+        <div class="row">
+            <div class="col-md-4">
               <label for="name">Nome</label>
               <input formControlName='name' type="text" id="name" class="form-control" aria-describedby="passwordHelpInline">
-
+              <div *ngIf="entryForm.controls['name'] && (entryForm.controls['name'].dirty || entryForm.controls['name'].touched)"
+                  class="text-danger">
+                <div *ngIf="entryForm.controls['name'].errors?.required">
+                  Nome obrigatório
+                </div>
+                <div *ngIf="entryForm.controls['name'].errors?.minlength">
+                  O nome deve contar no mínimo 2 caracteres
+                </div>
+              </div>
 
 
             </div>
-            <div class="col-md-7">
+            <div class="col-md-4 d-flex flex-column">
+              <label for="categories">Categoria</label>
+              <select formControlName='category' id="categories" name="categories">
+                <option *ngFor='let category of categories' value={{category.id}}>{{category.name}}</option>
+              </select>
+              <div *ngIf="entryForm.controls['category'] && (entryForm.controls['category'].dirty || entryForm.controls['category'].touched)"
+                  class="text-danger">
+                <div *ngIf="entryForm.controls['category'].errors?.required">
+                  Categoria obrigatória
+                </div>
+                <div *ngIf="entryForm.controls['category'].errors?.minlength">
+                  A categoria deve contar no mínimo 2 caracteres
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
                 <label for="description">Descrição</label>
                 <textarea formControlName='description' rows="3" id="description" class="form-control"></textarea>
             </div>
         </div>
 
         <div class="row d-flex justify-content-end pe-2">
-            <button type="submit" class="btn btn-primary col-md-2 col-lg-1 mt-2">Salvar</button>
+            <button (click)='submitForm()' [disabled]='submittingForm || entryForm.invalid' type="submit" class="btn btn-primary col-md-2 col-lg-1 mt-2">Salvar</button>
         </div>
       </form>
     </div>

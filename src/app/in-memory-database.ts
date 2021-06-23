@@ -12,22 +12,11 @@ export class InMemoryDatabase implements InMemoryDbService{
       ];
   
       const entries: Entry[] = [
-        { id: 1, name: 'Gás de Cozinha', category: categories[0]},
-        { id: 2, name: 'Suplementos', category: categories[1]},
-        { id: 3, name: 'Salário na Empresa X', category: categories[3]},
-        { id: 4, name: 'Aluguel de Filme', category: categories[2]},
-        { id: 5, name: 'Suplementos', category: categories[1]},
-        { id: 6, name: 'Video Game da Filha', category: categories[2]},
-        { id: 11, name: 'Uber', category: categories[1]},
-        { id: 12, name: 'Aluguel', category: categories[2]},
-        { id: 13, name: 'Gás de Cozinha', category: categories[1]},
-        { id: 14, name: 'Pagamento Pelo Projeto XYZ', category: categories[4]},
-        { id: 19, name: 'Aluguel de Filme', category: categories[2]},
-        { id: 21, name: 'Video Game da Filha', category: categories[1]},
-        { id: 22, name: 'Cinema', category: categories[2]},
-        { id: 23, name: 'Jiu Jitsu', category: categories[1]},
-        { id: 44, name: 'Uber', category: categories[2]},
-        { id: 55, name: 'Cinema', category: categories[1]}
+        { id: 1, name: 'Gás de Cozinha', category: categories[0].id, description: 'Gás'},
+        { id: 2, name: 'Suplementos', category: categories[1].id, description: 'Sup'},
+        { id: 3, name: 'Salário na Empresa X', category: categories[3].id, description: 'Dinheiro'},
+        { id: 4, name: 'Aluguel de Filme', category: categories[2].id, description: 'Locadora cara'},
+        { id: 14, name: 'Pagamento Pelo Projeto XYZ', category: categories[4].id, description: 'Projeto loco'}
       ]
   
       return { categories, entries }
