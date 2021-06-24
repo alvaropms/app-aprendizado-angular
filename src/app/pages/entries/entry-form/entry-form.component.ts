@@ -77,7 +77,7 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
       id: null,
       name: [null, [Validators.required, Validators.minLength(2)]],
       description: null,
-      category: [null, [Validators.required]]
+      categoryId: [null, [Validators.required]]
     });
   }
 

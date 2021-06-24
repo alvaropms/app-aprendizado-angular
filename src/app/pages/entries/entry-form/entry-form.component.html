@@ -34,7 +34,7 @@
             </div>
             <div class="col-md-4 d-flex flex-column">
               <label for="categories">Categoria</label>
-              <select formControlName='category' id="categories" name="categories">
+              <select formControlName='categoryId' id="categories" name="categories">
                 <option [selected]='category.id == defaultCategory.id' *ngFor='let category of categories' value={{category.id}}>{{category.name}}</option>
               </select>
               <div *ngIf="entryForm.controls['category'] && (entryForm.controls['category'].dirty || entryForm.controls['category'].touched)"
