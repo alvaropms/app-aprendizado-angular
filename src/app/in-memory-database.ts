@@ -12,11 +12,11 @@ export class InMemoryDatabase implements InMemoryDbService{
       ];
   
       const entries: Entry[] = [
-        { id: 1, name: 'Gás de Cozinha', category: categories[0].id, description: 'Gás'},
-        { id: 2, name: 'Suplementos', category: categories[1].id, description: 'Sup'},
-        { id: 3, name: 'Salário na Empresa X', category: categories[3].id, description: 'Dinheiro'},
-        { id: 4, name: 'Aluguel de Filme', category: categories[2].id, description: 'Locadora cara'},
-        { id: 14, name: 'Pagamento Pelo Projeto XYZ', category: categories[4].id, description: 'Projeto loco'}
+        { id: 1, name: 'Gás de Cozinha', categoryId: categories[0].id, description: 'Gás'},
+        { id: 2, name: 'Suplementos', categoryId: categories[1].id, description: 'Sup'},
+        { id: 3, name: 'Salário na Empresa X', categoryId: categories[3].id, description: 'Dinheiro'},
+        { id: 4, name: 'Aluguel de Filme', categoryId: categories[2].id, description: 'Locadora cara'},
+        { id: 14, name: 'Pagamento Pelo Projeto XYZ', categoryId: categories[4].id, description: 'Projeto loco'}
       ]
   
       return { categories, entries }

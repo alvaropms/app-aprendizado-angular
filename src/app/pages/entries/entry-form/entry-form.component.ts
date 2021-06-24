@@ -25,6 +25,7 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
   id: number = 0;
   error: boolean = false;
   categories: Category[] = [];
+  defaultCategory: Category = {}
 
   constructor(
     private entryService: EntryService,
@@ -40,11 +41,11 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
   ngOnInit(): void {
     this.setCurrentAction(),
     this.buildEntryForm(),
-    this.loadEntry(),
     this.categoryService.getAll().subscribe(
       categories => this.categories = categories as Category[],
       error => alert('Erro ao carregar a lista!')
-    )
+      ),
+    this.loadEntry()
   }
 
   ngAfterContentChecked(){
@@ -53,12 +54,6 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
 
   submitForm(){
     this.submittingForm = true;
-
-    /*this.categoryService.getById(this.entryForm.controls['categoryId'].value).subscribe(
-      category => this.entryForm.controls['name'].setValue('nome'),
-      error => alert('Erro ao carregar a lista!')
-    )
-    this.entryForm.controls['category'].value*/
 
     if(this.currentAction == 'new'){
       this.createEntry();
@@ -95,6 +90,11 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
           this.entry = entry;
           console.log(entry);
           this.entryForm.patchValue(entry);
+          for(const key in this.categories){
+            if(entry.categoryId == this.categories[key].id){
+              this.defaultCategory = Object.assign(new Category(), this.categories[key])
+            }
+          }
         },
         (error) => alert('Erro no servidor!')
       )

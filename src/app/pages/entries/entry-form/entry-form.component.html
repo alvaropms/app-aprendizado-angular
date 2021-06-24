@@ -35,18 +35,17 @@
             <div class="col-md-4 d-flex flex-column">
               <label for="categories">Categoria</label>
               <select formControlName='category' id="categories" name="categories">
-                <option *ngFor='let category of categories' value={{category.id}}>{{category.name}}</option>
+                <option [selected]='category.id == defaultCategory.id' *ngFor='let category of categories' value={{category.id}}>{{category.name}}</option>
               </select>
               <div *ngIf="entryForm.controls['category'] && (entryForm.controls['category'].dirty || entryForm.controls['category'].touched)"
                   class="text-danger">
                 <div *ngIf="entryForm.controls['category'].errors?.required">
                   Categoria obrigatória
                 </div>
-                <div *ngIf="entryForm.controls['category'].errors?.minlength">
-                  A categoria deve contar no mínimo 2 caracteres
-                </div>
               </div>
             </div>
+
+
             <div class="col-md-4">
                 <label for="description">Descrição</label>
                 <textarea formControlName='description' rows="3" id="description" class="form-control"></textarea>

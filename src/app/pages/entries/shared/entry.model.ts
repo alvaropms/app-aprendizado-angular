@@ -5,6 +5,6 @@ export class Entry{
         public id?: number,
         public name?: string,
         public description?: string,
-        public category?: number
+        public categoryId?: number
     ){}
 }
