@@ -1,29 +1,45 @@
-<h2 class="d-flex justify-content-center mt-4 fw-bold">
-    Bem vindo ao meu site
-</h2>
 
-<div class="container">
-    <div class="row ">
-        <div class="fs-3 mt-4">
-            Sobre a aplicação
-        </div>
-        <p class="fs-5">
-            Apparently we had reached a great height in the atmosphere, for the sky was a dead black, and the stars had ceased to twinkle. By the same illusion which lifts the horizon of the sea to the level of the spectator on a hillside, the sable cloud beneath was dished out, and the car seemed to float in the middle of an immense dark sphere, whose upper half was strewn with silver. Looking down into the dark gulf below, I could see a ruddy light streaming through a rift in the clouds.
-        </p>
-        <img src="assets/categories.PNG" alt="categories">
-        <p class="fs-5">
-            Apparently we had reached a great height in the atmosphere, for the sky was a dead black, and the stars had ceased to twinkle. By the same illusion which lifts the horizon of the sea to the level of the spectator on a hillside, the sable cloud beneath was dished out, and the car seemed to float in the middle of an immense dark sphere, whose upper half was strewn with silver. Looking down into the dark gulf below, I could see a ruddy light streaming through a rift in the clouds.
-        </p>
-        <img src="assets/formcategories.PNG" alt="formcategories">
+<div class="page">
+    <div class="img d-flex justify-content-center align-items-center">
+        <h1 >Página de Categorias</h1>
     </div>
+    <div class="container mt-5 mb-5 d-flex justify-content-center align-items-center flex-column">
+        <div class="row">
+            <div class=" col-md-6 col-sm-12 d-flex flex-column justify-content-center align-items-center">
+                Crie, edite e exclua categorias que poderão ser usadas
+                no futuro para cadastrar entradas. Cada categorias possui
+                um nome e uma descrição. <br>
+                Tudo é salvo localmente e possui alguns cadastros padrões,
+                por isso, ao reiniciar o site todas operações serão 
+                revertidas.
 
-    <div class="row ">
-        <div class="fs-3 mt-4">
-            Sobre o que foi aprendido
+                <a routerLink='/categories' type="button" class="btn btn-success">Página de categorias</a>
+                
+            </div>
+            <div class=" col-md-6 col-sm-12 d-flex flex-column justify-content-center align-items-center">
+                <img src="assets/categories.PNG" alt="page">
+            </div>
         </div>
-        <p class="fs-5">
-            Apparently we had reached a great height in the atmosphere, for the sky was a dead black, and the stars had ceased to twinkle. By the same illusion which lifts the horizon of the sea to the level of the spectator on a hillside, the sable cloud beneath was dished out, and the car seemed to float in the middle of an immense dark sphere, whose upper half was strewn with silver. Looking down into the dark gulf below, I could see a ruddy light streaming through a rift in the clouds.
-        </p>
-        <img class="img" src="assets/angular.png" alt="categories">
     </div>
+    
+    
+    
+    <div class="img  d-flex justify-content-center align-items-center">
+        <h1 >Página de Entradas</h1>
+    </div>
+    <div class="container mt-5 mb-5 d-flex justify-content-center align-items-center flex-column">
+        <div class="row d-flex flex-row">
+            <div class="order-last order-md-first col-md-6 col-sm-12 d-flex flex-column justify-content-center align-items-center">
+                <img src="assets/entries.png" alt="page">
+            </div>
+            <div class="order-first order-md-last col-md-6 col-sm-12 d-flex flex-column justify-content-center align-items-center">
+                Crie, edite e exclua entradas. Cada entrada pertence
+                a uma categoria e possui nome e descrição.
+                Se você excluir uma categoria, as entradas pertencentes
+                a ela não serão excluídas e mostrarão que a categoria é inválida.
+                <a routerLink='/entries' type="button" class="btn btn-success">Página de entradas</a>
+            </div>
+        </div>
+    </div>
+    
 </div>
