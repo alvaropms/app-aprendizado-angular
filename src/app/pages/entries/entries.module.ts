@@ -6,6 +6,8 @@ import { EntryListComponent } from './entry-list/entry-list.component';
 import { EntryFormComponent } from './entry-form/entry-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { SharedModule } from 'src/app/shared/shared.module';
+
 
 @NgModule({
   declarations: [
@@ -15,7 +17,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     EntriesRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class EntriesModule { }

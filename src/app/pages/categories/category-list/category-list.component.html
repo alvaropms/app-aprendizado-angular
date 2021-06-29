@@ -1,10 +1,6 @@
 <div class="container spc-footer">
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb bg-light p-2">
-      <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Categorias</li>
-    </ol>
-</nav>
+<app-breadcrumb  [items]="[{text: 'Categorias'}]">
+</app-breadcrumb>
 
 <div class="row mb-3 mt-4">
   <div class="col-6 h2">

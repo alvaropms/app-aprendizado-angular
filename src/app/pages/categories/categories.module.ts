@@ -7,8 +7,7 @@ import { CategoryFormComponent } from './category-form/category-form.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 
-//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-//import { ToastrModule } from 'ngx-toastr';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +18,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     CategoriesRoutingModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class CategoriesModule { }
