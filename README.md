@@ -1,27 +1,30 @@
-# Finansys
+﻿# :computer: App de Aprendizado Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.4.
+Aplicativo desenvolvido seguindo dicas do curso de Angular Avançado ministrado pelo instrutor **Nonato Costa**  na plataforma Udemy.
 
-## Development server
+## :mag_right: Sobre a aplicação
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+A aplicação consiste na manipulação de duas tabelas em um banco de dados fictício, a tabela de **Categorias** e a de **Entradas**
 
-## Code scaffolding
+### Categorias
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+**Crie, edite e exclua categorias** que poderão ser usadas no futuro para cadastrar entradas. Cada categorias possui um **nome** e uma **descrição**.  
+Tudo é salvo localmente e possui alguns cadastros padrões, por isso, ao reiniciar o site **todas operações serão revertidas**.
 
-## Build
+![Página de listagem de Categorias](https://raw.githubusercontent.com/alvaropms/app-aprendizado-angular/main/src/assets/categories.PNG)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Entradas
 
-## Running unit tests
+**Crie, edite e exclua entradas**. Cada entrada pertence a uma categoria e possui **nome** e **descrição**. Se você excluir uma categoria, as entradas pertencentes a ela **não serão excluídas** e mostrarão que a categoria é **inválida**.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+![Página de listagem de Entradas](https://raw.githubusercontent.com/alvaropms/app-aprendizado-angular/main/src/assets/entries.png)
 
-## Running end-to-end tests
+## :book: O que foi aprendido
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Além da criação de um aplicativo web **do zero** com Angular, podemos destacar os seguintes aprendizados:
 
-## Further help
+ - **Componentização:** separação de trechos de código repetitivos em componentes únicos
+ - **Roteamento:** navegação em módulos e componentes sem a necessidade de recarregar a página
+ - **Criação de serviços:** Comunicação com uma API externa e tratamento dos dados retornados pelo servidor
+ - **Bootstrap:** utilização de um framework para facilitar a criação e estilização de páginas responsivas
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
