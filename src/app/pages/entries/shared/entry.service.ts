@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import {map, catchError, flatMap} from 'rxjs/operators';
+import { Observable} from 'rxjs';
 import {Entry} from '../../entries/shared/entry.model';
+import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,48 +9,28 @@ import {Entry} from '../../entries/shared/entry.model';
 export class EntryService {
   private apiPath: string = 'api/entries';
 
-  constructor(private http: HttpClient) {
+  constructor(private sharedService: SharedService) {
 
    }
 
    getAll(): Observable<Entry[]>{
-     return this.http.get(this.apiPath).pipe(
-       catchError(this.handleError),
-       map(this.jsonDataToEntries)
-     )
+     return this.sharedService.getAll(this.apiPath, this.jsonDataToEntries);
    }
 
    getById(id:any): Observable<Entry>{
-     const url = `${this.apiPath}/${id}`;
-     return this.http.get(url).pipe(
-       catchError(this.handleError),
-       map(this.jsonDataToEntry)
-     )
+     return this.sharedService.getById(id, this.apiPath, this.jsonDataToEntry);
    }
 
    create(entry: Entry): Observable<Entry>{
-     return this.http.post(this.apiPath, entry).pipe(
-       catchError(this.handleError),
-       map(this.jsonDataToEntry)
-     )
+     return this.sharedService.create(entry, this.apiPath, this.jsonDataToEntry)
    }
 
    update(entry: Entry): Observable<Entry>{
-     const url = `${this.apiPath}/${entry.id}`;
-
-     return this.http.put(url, entry).pipe(
-       catchError(this.handleError),
-       map(() => entry)
-     )
+     return this.sharedService.update(entry, this.apiPath);
    }
 
    delete(id: number): Observable<any>{
-     const url = `${this.apiPath}/${id}`;
-
-     return this.http.delete(url).pipe(
-       catchError(this.handleError),
-       map(() => null)
-     )
+     return this.sharedService.delete(id, this.apiPath)
    }
 
    // PRRIVATE METHODS
@@ -64,10 +43,5 @@ export class EntryService {
 
     private jsonDataToEntry( jsonData: any): Entry{
       return jsonData as Entry;
-    }
-
-    private handleError(error: any): Observable<any>{
-      console.log('ERRO NA REQUISIÇÃO', error);
-      return throwError(error);
     }
 }

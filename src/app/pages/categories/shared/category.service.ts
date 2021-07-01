@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import {map, catchError, flatMap} from 'rxjs/operators';
+import { Observable} from 'rxjs';
 import {Category} from './category.model';
+import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,49 +9,29 @@ import {Category} from './category.model';
 export class CategoryService {
   private apiPath: string = 'api/categories';
 
-  constructor(private http: HttpClient) {
+  constructor(private sharedService: SharedService) {
 
    }
 
    getAll(): Observable<Category[]>{
-     return this.http.get(this.apiPath).pipe(
-       catchError(this.handleError),
-       map(this.jsonDataToCategories)
-     )
-   }
+    return this.sharedService.getAll(this.apiPath, this.jsonDataToCategories);
+  }
 
-   getById(id:any): Observable<Category>{
-     const url = `${this.apiPath}/${id}`;
-     return this.http.get(url).pipe(
-       catchError(this.handleError),
-       map(this.jsonDataToCategory)
-     )
-   }
+  getById(id:any): Observable<Category>{
+    return this.sharedService.getById(id, this.apiPath, this.jsonDataToCategory);
+  }
 
-   create(category: Category): Observable<Category>{
-     return this.http.post(this.apiPath, category).pipe(
-       catchError(this.handleError),
-       map(this.jsonDataToCategory)
-     )
-   }
+  create(category: Category): Observable<Category>{
+    return this.sharedService.create(category, this.apiPath, this.jsonDataToCategory)
+  }
 
-   update(category: Category): Observable<Category>{
-     const url = `${this.apiPath}/${category.id}`;
+  update(category: Category): Observable<Category>{
+    return this.sharedService.update(category, this.apiPath);
+  }
 
-     return this.http.put(url, category).pipe(
-       catchError(this.handleError),
-       map(() => category)
-     )
-   }
-
-   delete(id: number): Observable<any>{
-     const url = `${this.apiPath}/${id}`;
-
-     return this.http.delete(url).pipe(
-       catchError(this.handleError),
-       map(() => null)
-     )
-   }
+  delete(id: number): Observable<any>{
+    return this.sharedService.delete(id, this.apiPath)
+  }
 
    // PRRIVATE METHODS
 
@@ -64,10 +43,5 @@ export class CategoryService {
 
     private jsonDataToCategory( jsonData: any): Category{
       return jsonData as Category;
-    }
-
-    private handleError(error: any): Observable<any>{
-      console.log('ERRO NA REQUISIÇÃO', error);
-      return throwError(error);
     }
 }
