@@ -2,11 +2,11 @@
 <app-breadcrumb [items]="[{text:'Entradas'}]">
 </app-breadcrumb>
 
-<div class="row mb-3 mt-4">
-  <div class="col-6 h2">
+<div class="d-flex justify-content-between align-items-center mb-3 mt-4">
+  <div class="h2">
     Entradas
   </div>
-  <div class="col-6 d-flex justify-content-end">
+  <div class="">
     <a routerLink="new" class="btn btn-success spacement">+ Nova Entrada</a>
   </div>
 </div>
@@ -30,8 +30,8 @@
       </td>
 
       <td>
-        <a [routerLink]="[entry.id, 'edit']" class="btn btn-outline-info me-1 mb-1" >Editar</a>
-        <button (click)='deleteEntry(entry)' class="btn btn-outline-danger mb-1" >Excluir</button>
+        <a [routerLink]="[entry.id, 'edit']" class="btn btn-outline-info me-1 mb-1 width-73" >Editar</a>
+        <button (click)='deleteEntry(entry)' class="btn btn-outline-danger mb-1 width-73" >Excluir</button>
       </td>
     </tr>
   </tbody>
