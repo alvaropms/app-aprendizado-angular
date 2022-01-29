@@ -1,6 +1,7 @@
 ﻿# :computer: App de Aprendizado Angular
 
 Aplicativo desenvolvido seguindo dicas do curso de Angular Avançado ministrado pelo instrutor **Nonato Costa**  na plataforma Udemy.
+Você pode conferir o projeto na web clicando [aqui](https://aprendizado-angular.vercel.app/)
 
 ## :mag_right: Sobre a aplicação
 
